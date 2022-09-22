@@ -1,0 +1,11 @@
+<mat-toolbar>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <button 
+        *ngFor="let route of navigationRoutes; index as i"
+        (click)="goToRoute(route.route)"
+        class="button">
+        {{route.title}}
+    </button>
+</mat-toolbar>
+  

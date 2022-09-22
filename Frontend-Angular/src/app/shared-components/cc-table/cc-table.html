@@ -1,0 +1,10 @@
+<table [id]="'cc-table-' + id" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container
+        *ngFor="let column of displayedColumns; index as i"
+        [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef> {{column.columnName}} </th>
+      <td mat-cell *matCellDef="let row"> {{column.cell(row)}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
+</table>

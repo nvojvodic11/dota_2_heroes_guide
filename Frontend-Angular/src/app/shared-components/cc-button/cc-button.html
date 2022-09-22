@@ -1,0 +1,19 @@
+<div class="button-row">
+    <button
+        *ngIf="!isRaised; else raisedButton"
+        [id]="'mat-button-' + id"
+        mat-stroked-button
+        (click)="onClick && onClick()"
+        [color]="color">
+        {{title}}
+    </button>
+    <ng-template #raisedButton>
+        <button
+            [id]="'mat-button-' + id"
+            mat-raised-button
+            (click)="onClick && onClick()"
+            [color]="color">
+            {{title}}
+        </button>
+    </ng-template>
+</div>
