@@ -7,6 +7,11 @@ import { HomeComponent } from './components/home/home.components';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { HeroesEffect } from './components/heroes/state/heroes.effect';
+import { heroesReducer } from './components/heroes/state/heroes.reducer';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,10 @@ import { SharedComponentsModule } from './shared-components/shared-components.mo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    HttpClientModule,
+    StoreModule.forRoot({heroes: heroesReducer}),
+    EffectsModule.forRoot([HeroesEffect])
   ],
   providers: [],
   bootstrap: [AppComponent]
