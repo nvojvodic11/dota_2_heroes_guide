@@ -1,4 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable, takeUntil } from 'rxjs';
 import { TableData } from 'src/app/shared-components/interfaces/tableData';
 import { BaseComponent } from '../base-component';
 
@@ -10,8 +13,12 @@ import { BaseComponent } from '../base-component';
 
 export class CCTableComponent extends BaseComponent implements OnInit{
     @Input() displayedColumns: TableData[];
-    @Input() dataSource: any;
+    @Input() tableData: Observable<any>;
+    @Input() pageSizeOptions: Array<number> = [10, 15, 20];
+    
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
+    dataSource: MatTableDataSource<any>;
     tableHeaders: string[] = [];
 
     constructor(){
@@ -22,5 +29,11 @@ export class CCTableComponent extends BaseComponent implements OnInit{
         this.displayedColumns.map((column) => 
             this.tableHeaders.push(column.columnDef)
         );
+        this.tableData.pipe(
+            takeUntil(this.destroy$)
+        ).subscribe(value => {
+            this.dataSource = new MatTableDataSource(value);
+            this.dataSource.paginator = this.paginator;
+        });
     }
 }

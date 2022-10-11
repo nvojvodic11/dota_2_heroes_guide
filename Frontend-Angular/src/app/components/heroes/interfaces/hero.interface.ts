@@ -5,3 +5,11 @@ export interface Hero{
     heroPosition: string;
     imageName: string;
 }
+
+export interface HeroServerData{
+    id: number;
+    hero_name: string;
+    hero_role: string;
+    hero_position: string;
+    image_name: string;
+}

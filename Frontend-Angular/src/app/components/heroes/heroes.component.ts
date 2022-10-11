@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { TableData } from "src/app/shared-components/interfaces/tableData";
 import { Hero } from "./interfaces/hero.interface";
@@ -11,7 +11,7 @@ import * as heroesSelect from './state/actions/heroes-select';
     styleUrls: ['./heroes.component.scss']
 })
 
-export class HeroesComponent implements OnInit{
+export class HeroesComponent{
 
     heroesTableColumns: TableData[];
     data$: any;
@@ -19,10 +19,7 @@ export class HeroesComponent implements OnInit{
     constructor(private store: Store){
         this.heroesTableColumns = this.createColumns();
         store.dispatch(heroesPageAction.getAllHeroes());
-        store.select(heroesSelect.getAllHeroes).subscribe(val => this.data$ = val);
-    }
-
-    ngOnInit(): void {
+        this.data$ = store.select(heroesSelect.getAllHeroes);
     }
 
     createColumns(): TableData[] {

@@ -36,8 +36,6 @@ export class HeroesEffect {
         () => this.actions$.pipe(
             ofType(heroesApiAction.actionFailed),
             map((result) => {
-                console.log('failed');
-                console.log(result);
                 return result
             })
         ), {dispatch: false}
