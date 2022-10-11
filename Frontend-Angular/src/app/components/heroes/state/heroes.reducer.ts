@@ -8,7 +8,7 @@ export const heroesReducer = createReducer<HeroesState>(
     on(HeroApiAction.getAllHeroesSuccessfull, (state, action): HeroesState => {
         return {
             ...state,
-            heroes: action.heroes ? action.heroes : []
+            heroes: action.heroes
         }
     })
 )
