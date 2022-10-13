@@ -2,8 +2,8 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, takeUntil } from 'rxjs';
-import { TableData } from 'src/app/shared-components/interfaces/tableData';
-import { BaseComponent } from '../base-component';
+import { TableData } from 'src/app/shared-components/utils/interfaces/table-data.interface';
+import { BaseComponent } from '../utils/base-component';
 
 @Component({
     selector: 'cc-table',

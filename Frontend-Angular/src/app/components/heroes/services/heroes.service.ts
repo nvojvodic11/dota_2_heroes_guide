@@ -22,9 +22,7 @@ export class HeroesService{
      */
     getAllHeroes(): Observable<Hero[]>{
         return this.http.get<HeroServerData[]>(this.GET_ALL_HEROES_URL).pipe(
-            map(data => {
-                return this.heroesFactory.formatServerData(data)
-            })
+            map(data => this.heroesFactory.formatServerData(data))
         );
     }
 }

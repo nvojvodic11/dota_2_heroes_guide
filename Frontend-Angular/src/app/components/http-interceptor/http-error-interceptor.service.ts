@@ -2,16 +2,28 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core";
 import {Observable, throwError } from "rxjs";
 import {catchError} from "rxjs/operators";
+import { CCInfoDialogComponent } from "src/app/shared-components/cc-dialogs/cc-info-dialog/cc-info-dialog.component";
+import { DialogService } from "src/app/shared-components/utils/dialog.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
+    constructor(private dialogService: DialogService){}
+
     intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(httpRequest).pipe(
             catchError((httpError: HttpErrorResponse) => {
                 const message = this.showErrorMessage(httpError.status);
                 const error = new Error(message);
+                const dialogRef = {
+                    data: {
+                        title: 'Info',
+                        message: message
+                    },
+                };
+
+                this.dialogService.open(CCInfoDialogComponent, dialogRef)
 
                 return throwError(() => error);
             })
@@ -38,10 +50,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             case 501:
             case 502:
             case 503:
-                message = 'Server error';
+                message = 'Server error!';
             break;
             default:
-                message = 'There was problem, please contact IT support';
+                this.dialogService.close();
+                message = 'There was a problem, please contact IT support!';
         }
 
         return message;

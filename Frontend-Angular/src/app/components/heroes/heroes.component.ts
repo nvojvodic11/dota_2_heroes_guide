@@ -1,6 +1,10 @@
 import { Component } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
-import { TableData } from "src/app/shared-components/interfaces/tableData";
+import { CCInfoDialogComponent } from "src/app/shared-components/cc-dialogs/cc-info-dialog/cc-info-dialog.component";
+import { CCProcessDialogComponent } from "src/app/shared-components/cc-dialogs/cc-process-dialog/cc-process-dialog";
+import { TableData } from "src/app/shared-components/utils/interfaces/table-data.interface";
+import { DialogService } from "src/app/shared-components/utils/dialog.service";
 import { Hero } from "./interfaces/hero.interface";
 import * as heroesPageAction from './state/actions/heroes-page-action';
 import * as heroesSelect from './state/actions/heroes-select';
@@ -10,13 +14,12 @@ import * as heroesSelect from './state/actions/heroes-select';
     templateUrl: './heroes.component.html',
     styleUrls: ['./heroes.component.scss']
 })
-
 export class HeroesComponent{
 
     heroesTableColumns: TableData[];
     data$: any;
     
-    constructor(private store: Store){
+    constructor(private store: Store, private dialogService: DialogService){
         this.heroesTableColumns = this.createColumns();
         store.dispatch(heroesPageAction.getAllHeroes());
         this.data$ = store.select(heroesSelect.getAllHeroes);

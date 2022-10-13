@@ -9,12 +9,20 @@ import { CCTableModule } from "./cc-table/cc-table.module";
 import { CCInputComponent } from "./cc-input/cc-input";
 import { CCInputModule } from "./cc-input/cc-input.module";
 import { MatFormFieldModule  } from "@angular/material/form-field";
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { CCProcessDialogComponent } from "./cc-dialogs/cc-process-dialog/cc-process-dialog";
+import { CCProcessDialogModule } from "./cc-dialogs/cc-process-dialog/cc-process-dialog.module";
+import { CCInfoDialogComponent } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.component";
+import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.module";
+
 @NgModule({
     declarations: [
         CCToolbarComponent,
         CCButtonComponent,
         CCTableComponent,
         CCInputComponent,
+        CCProcessDialogComponent,
+        CCInfoDialogComponent
     ],
     imports: [
         CCToolbarModule,
@@ -22,13 +30,23 @@ import { MatFormFieldModule  } from "@angular/material/form-field";
         BrowserModule,
         CCTableModule,
         CCInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatDialogModule,
+        CCProcessDialogModule,
+        CCInfoDialogModule
     ],
     exports: [
         CCToolbarComponent,
         CCButtonComponent,
         CCTableComponent,
         CCInputComponent,
+        CCProcessDialogComponent,
+        CCInfoDialogComponent
+    ],
+    providers: [
+        {
+            provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false},
+        },
     ]
 })
 

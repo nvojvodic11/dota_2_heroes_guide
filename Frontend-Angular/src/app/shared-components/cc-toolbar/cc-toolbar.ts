@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { NavigationRoutes } from "src/app/shared-components/interfaces/navigationRoutes";
+import { NavigationRoutes } from "src/app/shared-components/utils/interfaces/navigation-routes.interface";
 
 @Component({
     selector: 'cc-toolbar',
