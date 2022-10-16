@@ -8,6 +8,7 @@ import { BaseComponent } from "../utils/base-component";
 })
 
 export class CCInputComponent extends BaseComponent{
+    @Input() label: string;
 
     constructor(){
         super();

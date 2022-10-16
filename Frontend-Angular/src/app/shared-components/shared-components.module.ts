@@ -14,6 +14,7 @@ import { CCProcessDialogComponent } from "./cc-dialogs/cc-process-dialog/cc-proc
 import { CCProcessDialogModule } from "./cc-dialogs/cc-process-dialog/cc-process-dialog.module";
 import { CCInfoDialogComponent } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.component";
 import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.module";
+import { CommonModule } from '@angular/common';  
 
 @NgModule({
     declarations: [
@@ -22,7 +23,7 @@ import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.m
         CCTableComponent,
         CCInputComponent,
         CCProcessDialogComponent,
-        CCInfoDialogComponent
+        CCInfoDialogComponent,
     ],
     imports: [
         CCToolbarModule,
@@ -33,7 +34,8 @@ import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.m
         MatFormFieldModule,
         MatDialogModule,
         CCProcessDialogModule,
-        CCInfoDialogModule
+        CCInfoDialogModule,
+        CommonModule
     ],
     exports: [
         CCToolbarComponent,
@@ -41,7 +43,9 @@ import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.m
         CCTableComponent,
         CCInputComponent,
         CCProcessDialogComponent,
-        CCInfoDialogComponent
+        CCInfoDialogComponent,
+        CommonModule,
+        BrowserModule
     ],
     providers: [
         {

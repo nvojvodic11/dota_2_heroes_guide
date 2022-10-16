@@ -8,6 +8,7 @@ import { DialogService } from "src/app/shared-components/utils/dialog.service";
 import { Hero } from "./interfaces/hero.interface";
 import * as heroesPageAction from './state/actions/heroes-page-action';
 import * as heroesSelect from './state/actions/heroes-select';
+import { FilterValue } from "src/app/shared-components/utils/interfaces/filter-value.intrerface";
 
 @Component({
     selector: 'd2hg-heroes',
@@ -18,9 +19,18 @@ export class HeroesComponent{
 
     heroesTableColumns: TableData[];
     data$: any;
+    filterValue: FilterValue;
     
     constructor(private store: Store, private dialogService: DialogService){
         this.heroesTableColumns = this.createColumns();
+        this.filterValue = {
+            showGlobalFilter: true,
+            showColumnFilter: true,
+            sort: {
+                columnName: '',
+                direction: ''
+            }
+        };
         store.dispatch(heroesPageAction.getAllHeroes());
         this.data$ = store.select(heroesSelect.getAllHeroes);
     }
@@ -33,22 +43,22 @@ export class HeroesComponent{
                 cell: (hero: Hero) => `${hero.id}`
             },
             {
-                columnDef: 'hero_name',
+                columnDef: 'heroName',
                 columnName: 'Hero Name',
-                cell: (hero: Hero) => `${hero.heroName}`
+                cell: (hero: any) => `${hero.heroName}`
             },
             {
-                columnDef: 'hero_role',
+                columnDef: 'heroRole',
                 columnName: 'Hero Role',
                 cell: (hero: Hero) => `${hero.heroRole}`
             },
             {
-                columnDef: 'hero_position',
+                columnDef: 'heroPosition',
                 columnName: 'Hero Position',
                 cell: (hero: Hero) => `${hero.heroPosition}`
             },
             {
-                columnDef: 'image_name',
+                columnDef: 'imageName',
                 columnName: 'Image',
                 cell: (hero: Hero) => `${hero.imageName}`
             },
