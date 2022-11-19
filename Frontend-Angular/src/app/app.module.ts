@@ -13,12 +13,26 @@ import { EffectsModule } from '@ngrx/effects';
 import { HeroesEffect } from './components/heroes/state/heroes.effect';
 import { heroesReducer } from './components/heroes/state/heroes.reducer';
 import { HttpErrorInterceptor } from './components/http-interceptor/http-error-interceptor.service';
+import { HeroFormComponent } from './components/heroes/hero-form/hero-form.component';
+import { RouterModule } from '@angular/router';
+import { ItemsComponent } from './components/items/items.component';
+import { itemsReducer } from './components/items/state/items.reducer';
+import { ItemsEffect } from './components/items/state/items.effect';
+import { reducers } from './reducers';
+import { ItemFormComponent } from './components/items/item-form/item-form.component';
+import { GuidesComponent } from './components/guides/guides.component';
+import { GuideFormComponent } from './components/guides/guide-form/guide-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeroesComponent
+    HeroesComponent,
+    HeroFormComponent,
+    ItemsComponent,
+    ItemFormComponent,
+    GuidesComponent,
+    GuideFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +40,11 @@ import { HttpErrorInterceptor } from './components/http-interceptor/http-error-i
     BrowserAnimationsModule,
     SharedComponentsModule,
     HttpClientModule,
-    StoreModule.forRoot({heroes: heroesReducer}),
-    EffectsModule.forRoot([HeroesEffect])
+    RouterModule,
+    StoreModule.forRoot({}), 
+    StoreModule.forFeature('heroes', heroesReducer),
+    StoreModule.forFeature('items', itemsReducer),
+    EffectsModule.forRoot([HeroesEffect, ItemsEffect])
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}

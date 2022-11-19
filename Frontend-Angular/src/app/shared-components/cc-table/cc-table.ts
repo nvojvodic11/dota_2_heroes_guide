@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, takeUntil } from 'rxjs';
 import { TableData } from 'src/app/shared-components/utils/interfaces/table-data.interface';
-import { BaseComponent } from '../utils/base-component';
+import { BaseFormComponent } from '../utils/base-form-component';
 import { FilterValue } from '../utils/interfaces/filter-value.intrerface';
 import {MatSort} from '@angular/material/sort';
-import { Hero } from 'src/app/components/heroes/interfaces/hero.interface';
+import { BaseComponent } from '../utils/base-component';
 
 @Component({
     selector: 'cc-table',
@@ -18,6 +18,7 @@ export class CCTableComponent extends BaseComponent implements OnInit{
     @Input() displayedColumns: TableData[];
     @Input() tableData: Observable<any>;
     @Input() pageSizeOptions: Array<number> = [10, 15, 20];
+    @Input() onRowClick: (params: any) => any;
     @Input() filterValue: FilterValue = {
         showGlobalFilter: false,
         showColumnFilter: false,

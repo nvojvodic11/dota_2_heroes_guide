@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <div class="add-button-wrapper">
+        <cc-button
+            id="add-new-item"
+            title="Add new item"
+            [isRaised]="true"
+            (click)="navigate()">
+        </cc-button>
+    </div>
+    <div class="table-wrapper">
+        <cc-table
+            id="items-table"
+            [onRowClick]="getRowData"
+            [displayedColumns]="itemsTableColumns"
+            [filterValue]="filterValue"
+            [tableData]="data$">
+        </cc-table>
+    </div>
+</div>

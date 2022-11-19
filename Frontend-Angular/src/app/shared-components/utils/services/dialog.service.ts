@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { DialogRef } from "./interfaces/dialog-ref.interface";
+import { DialogRef } from "../interfaces/dialog-ref.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -19,9 +19,17 @@ export class DialogService {
     }
 
     /**
-     * Close dialog
+     * Close all dialogs
      */
-    close(): void{
+    closeAll(): void{
         this.dialog.closeAll();
+    }
+
+    /**
+     * Close dialog by id
+     * @param id - dialog id
+     */
+    close(id: string): void{
+        this.dialog.getDialogById(id)?.close();
     }
 }

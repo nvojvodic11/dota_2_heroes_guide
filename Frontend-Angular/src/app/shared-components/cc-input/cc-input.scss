@@ -4,9 +4,25 @@
     height: 30px;
     padding-left: 5px;
     text-align: left !important;
+    width: 100%;
 }
 
 .cc-input-wrapper{
     margin: 10px 0px;
     width: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+.cc-image-preview{
+    width: 30%;
+    height: 30%;
+}
+
+.cc-image-preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

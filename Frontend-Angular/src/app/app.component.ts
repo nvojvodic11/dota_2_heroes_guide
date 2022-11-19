@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Frontend-Angular';
+  title = 'Dota2 Hero Guide';
   toolBarTitle = 'dota2HeroGuide';
   navigationRoutes = [
     {
@@ -16,6 +16,14 @@ export class AppComponent {
     {
       title: 'heroes',
       route: '/heroes'
+    },
+    {
+      title: 'items',
+      route: '/items'
+    },
+    {
+      title: 'guides',
+      route: '/guides'
     }
   ]
 }

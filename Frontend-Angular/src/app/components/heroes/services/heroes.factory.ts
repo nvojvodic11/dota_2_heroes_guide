@@ -9,6 +9,8 @@ import { Hero, HeroServerData } from "../interfaces/hero.interface";
 
 export class HeroesFactory {
 
+    HERO = 'hero';
+
     /**
      * Set data coming from server in corresponding format
      */
@@ -21,10 +23,25 @@ export class HeroesFactory {
                 'heroName': hero.hero_name,
                 'heroRole': hero.hero_role,
                 'heroPosition': hero.hero_position,
-                'imageName': hero.image_name
+                'heroImage': hero.image_name
             });
         });
 
         return formatedArray;
+    }
+
+    /**
+     * Set data coming from server in corresponding format for single hero
+     * @param dataToFormat 
+     * @returns 
+     */
+    formatSingleHeroData(dataToFormat: HeroServerData): Hero{
+        return{
+            'id': dataToFormat[this.HERO].id,
+            'heroName': dataToFormat[this.HERO].hero_name,
+            'heroRole': dataToFormat[this.HERO].hero_role,
+            'heroPosition': dataToFormat[this.HERO].hero_position,
+            'heroImage': dataToFormat[this.HERO].image_name
+        }
     }
 }

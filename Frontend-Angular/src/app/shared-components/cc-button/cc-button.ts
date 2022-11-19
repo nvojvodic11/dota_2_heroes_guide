@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { BaseComponent } from "../utils/base-component";
+import { BaseFormComponent } from "../utils/base-form-component";
 
 @Component({
     selector: 'cc-button',
@@ -7,10 +7,9 @@ import { BaseComponent } from "../utils/base-component";
     styleUrls: ['./cc-button.scss']
 })
 
-export class CCButtonComponent extends BaseComponent{
+export class CCButtonComponent extends BaseFormComponent{
     @Input() title: string;
     @Input() isRaised = false;
-    @Input() onClick: () => void;
     @Input() color: 'primary' | 'accent' | 'warn' = 'primary';
     
     constructor(){

@@ -5,7 +5,7 @@ export interface HeroesState{
 }
 
 // export interface State extends ApplicationState.State {
-//     stateName: HeroState
+//     stateName: HeroesState
 // }
 
 export const HERO_STATE_DEFAULT: HeroesState = {
@@ -14,6 +14,6 @@ export const HERO_STATE_DEFAULT: HeroesState = {
         heroName: '',
         heroRole: '',
         heroPosition: '',
-        imageName: ''
+        heroImage: null
     }]
 }

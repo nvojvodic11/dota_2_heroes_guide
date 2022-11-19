@@ -15,6 +15,11 @@ import { CCProcessDialogModule } from "./cc-dialogs/cc-process-dialog/cc-process
 import { CCInfoDialogComponent } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.component";
 import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.module";
 import { CommonModule } from '@angular/common';  
+import { CCSubmitButtonModule } from "./cc-submit-button/cc-submit-button.module";
+import { CCSubmitButtonComponent } from "./cc-submit-button/cc-submit-button";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseComponent } from "./utils/base-component";
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -24,6 +29,8 @@ import { CommonModule } from '@angular/common';
         CCInputComponent,
         CCProcessDialogComponent,
         CCInfoDialogComponent,
+        CCSubmitButtonComponent,
+        BaseComponent
     ],
     imports: [
         CCToolbarModule,
@@ -35,7 +42,9 @@ import { CommonModule } from '@angular/common';
         MatDialogModule,
         CCProcessDialogModule,
         CCInfoDialogModule,
-        CommonModule
+        CommonModule,
+        CCSubmitButtonModule, FormsModule, ReactiveFormsModule,
+        MatIconModule
     ],
     exports: [
         CCToolbarComponent,
@@ -44,8 +53,11 @@ import { CommonModule } from '@angular/common';
         CCInputComponent,
         CCProcessDialogComponent,
         CCInfoDialogComponent,
+        CCSubmitButtonComponent,
+        BaseComponent,
         CommonModule,
-        BrowserModule
+        MatIconModule,
+        BrowserModule, FormsModule, ReactiveFormsModule
     ],
     providers: [
         {

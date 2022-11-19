@@ -1,51 +1,65 @@
-import { Component } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { CCInfoDialogComponent } from "src/app/shared-components/cc-dialogs/cc-info-dialog/cc-info-dialog.component";
-import { CCProcessDialogComponent } from "src/app/shared-components/cc-dialogs/cc-process-dialog/cc-process-dialog";
 import { TableData } from "src/app/shared-components/utils/interfaces/table-data.interface";
-import { DialogService } from "src/app/shared-components/utils/dialog.service";
+import { DialogService } from "src/app/shared-components/utils/services/dialog.service";
 import { Hero } from "./interfaces/hero.interface";
 import * as heroesPageAction from './state/actions/heroes-page-action';
 import * as heroesSelect from './state/actions/heroes-select';
 import { FilterValue } from "src/app/shared-components/utils/interfaces/filter-value.intrerface";
+import { Router } from "@angular/router";
+import { BaseComponent } from "src/app/shared-components/utils/base-component";
+import { takeUntil } from "rxjs";
 
 @Component({
     selector: 'd2hg-heroes',
     templateUrl: './heroes.component.html',
     styleUrls: ['./heroes.component.scss']
 })
-export class HeroesComponent{
+export class HeroesComponent extends BaseComponent implements OnInit{
 
     heroesTableColumns: TableData[];
     data$: any;
-    filterValue: FilterValue;
+    filterValue: FilterValue = {
+        showGlobalFilter: true,
+        showColumnFilter: false,
+        sort: {
+            columnName: '',
+            direction: ''
+        }
+    };
     
-    constructor(private store: Store, private dialogService: DialogService){
+    constructor(
+        private store: Store,
+        private dialogService: DialogService,
+        public router: Router    
+    ){
+        super();
+    }
+
+    ngOnInit(): void {
+        this.getRowData = this.getRowData.bind(this);
         this.heroesTableColumns = this.createColumns();
-        this.filterValue = {
-            showGlobalFilter: true,
-            showColumnFilter: true,
-            sort: {
-                columnName: '',
-                direction: ''
-            }
-        };
-        store.dispatch(heroesPageAction.getAllHeroes());
-        this.data$ = store.select(heroesSelect.getAllHeroes);
+
+        this.store.dispatch(heroesPageAction.getAllHeroes());
+        this.data$ = this.store.select(heroesSelect.getAllHeroes).pipe(
+            takeUntil(this.destroy$)
+        );
+    }
+
+    navigate(): void {
+        this.router.navigateByUrl('/add/new/hero')
+    }
+
+    getRowData(row: Hero): void{
+        this.router.navigateByUrl(`/add/new/hero/${row.id}`)
     }
 
     createColumns(): TableData[] {
         const columns = [
             {
-                columnDef: 'id',
-                columnName: 'id',
-                cell: (hero: Hero) => `${hero.id}`
-            },
-            {
                 columnDef: 'heroName',
                 columnName: 'Hero Name',
-                cell: (hero: any) => `${hero.heroName}`
+                cell: (hero: Hero) => `${hero.heroName}`
             },
             {
                 columnDef: 'heroRole',
@@ -60,10 +74,10 @@ export class HeroesComponent{
             {
                 columnDef: 'imageName',
                 columnName: 'Image',
-                cell: (hero: Hero) => `${hero.imageName}`
+                cell: (hero: Hero) => `${hero.heroImage}`
             },
         ];
 
         return columns;
-    }
+    };
 }

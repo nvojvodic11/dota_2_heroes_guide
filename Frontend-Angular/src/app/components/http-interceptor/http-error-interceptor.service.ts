@@ -3,12 +3,16 @@ import { Injectable } from "@angular/core";
 import {Observable, throwError } from "rxjs";
 import {catchError} from "rxjs/operators";
 import { CCInfoDialogComponent } from "src/app/shared-components/cc-dialogs/cc-info-dialog/cc-info-dialog.component";
-import { DialogService } from "src/app/shared-components/utils/dialog.service";
+import { DialogTypeEnum } from "src/app/shared-components/cc-dialogs/enums/dialog-type.enum";
+import { HttpInterceptorMessages } from "src/app/shared-components/utils/enums/http-interceptor-messages.enum";
+import { DialogService } from "src/app/shared-components/utils/services/dialog.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
+    INFO = 'Info';
+
     constructor(private dialogService: DialogService){}
 
     intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -18,10 +22,15 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 const error = new Error(message);
                 const dialogRef = {
                     data: {
-                        title: 'Info',
+                        title: this.INFO,
                         message: message
                     },
                 };
+
+                try {
+                    this.dialogService.close(DialogTypeEnum.PROCESSING);
+                } catch (error) {
+                }
 
                 this.dialogService.open(CCInfoDialogComponent, dialogRef)
 
@@ -35,26 +44,25 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         
         switch(status){
             case 401:
-                message = 'Unauthorized!';
+                message = HttpInterceptorMessages.UNAUTHORIZED;
             break;
             case 403:
-                message = 'Forbiden!';
+                message = HttpInterceptorMessages.FORBIDEN;
             break;
             case 404:
-                message = 'Not found!';
+                message = HttpInterceptorMessages.NOT_FOUND;
             break;
             case 422:
-                message = 'Invalid data provided!';
+                message = HttpInterceptorMessages.INVALID_DATA;
             break;
             case 500:
             case 501:
             case 502:
             case 503:
-                message = 'Server error!';
+                message = HttpInterceptorMessages.CONTACT_SUPPORT;
             break;
             default:
-                this.dialogService.close();
-                message = 'There was a problem, please contact IT support!';
+                message = HttpInterceptorMessages.CONTACT_SUPPORT;
         }
 
         return message;
