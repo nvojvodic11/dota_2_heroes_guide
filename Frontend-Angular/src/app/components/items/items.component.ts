@@ -5,7 +5,7 @@ import { DialogService } from "src/app/shared-components/utils/services/dialog.s
 import { FilterValue } from "src/app/shared-components/utils/interfaces/filter-value.intrerface";
 import { Router } from "@angular/router";
 import { BaseComponent } from "src/app/shared-components/utils/base-component";
-import { takeUntil } from "rxjs";
+import { Observable, takeUntil } from "rxjs";
 import * as itemsPageAction from './state/actions/items-page-action';
 import * as ItemsSelect from './state/actions/items-select';
 import { Item } from "./interfaces/items.interface";
@@ -17,7 +17,7 @@ import { Item } from "./interfaces/items.interface";
 })
 export class ItemsComponent extends BaseComponent implements OnInit{
     itemsTableColumns: TableData[];
-    data$: any;
+    data$: Observable<Item[]>;
     filterValue: FilterValue = {
         showGlobalFilter: true,
         showColumnFilter: false,

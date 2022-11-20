@@ -20,6 +20,8 @@ import { CCSubmitButtonComponent } from "./cc-submit-button/cc-submit-button";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from "./utils/base-component";
 import {MatIconModule} from '@angular/material/icon';
+import { CCSelectComponent } from "./cc-select/cc-select";
+import { CCSelectModule } from "./cc-select/cc-select.module";
 
 @NgModule({
     declarations: [
@@ -30,7 +32,8 @@ import {MatIconModule} from '@angular/material/icon';
         CCProcessDialogComponent,
         CCInfoDialogComponent,
         CCSubmitButtonComponent,
-        BaseComponent
+        BaseComponent,
+        CCSelectComponent
     ],
     imports: [
         CCToolbarModule,
@@ -43,6 +46,7 @@ import {MatIconModule} from '@angular/material/icon';
         CCProcessDialogModule,
         CCInfoDialogModule,
         CommonModule,
+        CCSelectModule,
         CCSubmitButtonModule, FormsModule, ReactiveFormsModule,
         MatIconModule
     ],
@@ -57,6 +61,7 @@ import {MatIconModule} from '@angular/material/icon';
         BaseComponent,
         CommonModule,
         MatIconModule,
+        CCSelectComponent,
         BrowserModule, FormsModule, ReactiveFormsModule
     ],
     providers: [

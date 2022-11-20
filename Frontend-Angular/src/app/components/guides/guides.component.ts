@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { takeUntil } from "rxjs";
+import { Observable, takeUntil } from "rxjs";
 import { BaseComponent } from "src/app/shared-components/utils/base-component";
 import { FilterValue } from "src/app/shared-components/utils/interfaces/filter-value.intrerface";
 import { TableData } from "src/app/shared-components/utils/interfaces/table-data.interface";
@@ -17,7 +17,7 @@ import * as heroesSelect from '../heroes/state/actions/heroes-select';
 })
 export class GuidesComponent extends BaseComponent implements OnInit{
     heroesTableColumns: TableData[];
-    data$: any;
+    data$: Observable<Hero[]>;
     filterValue: FilterValue = {
         showGlobalFilter: true,
         showColumnFilter: false,

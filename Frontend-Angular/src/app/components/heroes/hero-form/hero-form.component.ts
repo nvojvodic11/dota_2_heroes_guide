@@ -26,7 +26,7 @@ export class HeroFormComponent extends BaseFormComponent implements OnInit{
         private heroService: HeroesService,
         private dialogService: DialogService,
         private formService: FormService,
-        private activatedRoute: ActivatedRoute 
+        private activatedRoute: ActivatedRoute,
     ){
         super();
     }

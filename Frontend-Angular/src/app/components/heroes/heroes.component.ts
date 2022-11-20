@@ -8,7 +8,7 @@ import * as heroesSelect from './state/actions/heroes-select';
 import { FilterValue } from "src/app/shared-components/utils/interfaces/filter-value.intrerface";
 import { Router } from "@angular/router";
 import { BaseComponent } from "src/app/shared-components/utils/base-component";
-import { takeUntil } from "rxjs";
+import { Observable, takeUntil } from "rxjs";
 
 @Component({
     selector: 'd2hg-heroes',
@@ -18,7 +18,7 @@ import { takeUntil } from "rxjs";
 export class HeroesComponent extends BaseComponent implements OnInit{
 
     heroesTableColumns: TableData[];
-    data$: any;
+    data$: Observable<Hero[]>;
     filterValue: FilterValue = {
         showGlobalFilter: true,
         showColumnFilter: false,
