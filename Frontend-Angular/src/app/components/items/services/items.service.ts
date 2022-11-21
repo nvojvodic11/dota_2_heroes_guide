@@ -15,6 +15,7 @@ export class ItemsService{
     private readonly ADD_NEW_ITEM_URL = `${environment.apiUrl}/additem`;
     private readonly GET_ITEM_URL = `${environment.apiUrl}/get-item/{id}`
     private readonly UPDATE_ITEM_URL = `${environment.apiUrl}/editItem/{id}`;
+    private readonly DELETE_ITEM_URL = `${environment.apiUrl}/deleteItem/{id}`;
 
     constructor(
         private http: HttpClient,
@@ -62,7 +63,17 @@ export class ItemsService{
 
     updateItem(item: Item){
         const url = this.UPDATE_ITEM_URL.replace('{id}', item.id.toString());
-        return this.http.post(url, item);
+        return this.http.put(url, item);
+    }
+
+    /**
+     * Delete selected item
+     * @param itemId
+     * @returns 
+     */
+     deleteItem(itemId: string): Observable<any>{
+        const url = this.DELETE_ITEM_URL.replace('{id}', itemId.toString());
+        return this.http.delete<any>(url);
     }
 
     /**

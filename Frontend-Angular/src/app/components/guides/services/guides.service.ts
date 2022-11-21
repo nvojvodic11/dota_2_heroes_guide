@@ -14,6 +14,7 @@ export class GuidesService{
     private readonly ADD_NEW_GUIDE_URL = `${environment.apiUrl}/addguide`;
     private readonly GET_GUIDE_URL = `${environment.apiUrl}/get-guide/{id}`
     private readonly UPDATE_GUIDE_URL = `${environment.apiUrl}/editguide/{id}`;
+    private readonly DELETE_GUID_URL = `${environment.apiUrl}/delete-guide/{id}`;
 
     constructor(
         private http: HttpClient,
@@ -48,7 +49,7 @@ export class GuidesService{
 
     updateGuide(guide: Guide){
         const url = this.UPDATE_GUIDE_URL.replace('{id}', guide.id.toString());
-        return this.http.post(url, guide)
+        return this.http.put(url, guide)
     }
 
     /**
@@ -62,11 +63,21 @@ export class GuidesService{
             heroRole: ['', Validators.required],
             heroPosition: ['', Validators.required],
             heroImage: [null],
-            counterHeros: [''],
+            counterHeroes: [''],
             counterItems: [''],
             fullBuild: [''],
             goodWith: [''],
         }) as FormGroup<GuideForm>;
+    }
+
+    /**
+     * Delete selected guide
+     * @param guideId
+     * @returns 
+     */
+    deleteGuide(guideId: string): Observable<any>{
+        const url = this.DELETE_GUID_URL.replace('{id}', guideId.toString());
+        return this.http.delete<any>(url);
     }
 
     /**

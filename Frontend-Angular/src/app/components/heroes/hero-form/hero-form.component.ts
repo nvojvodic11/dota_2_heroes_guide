@@ -4,7 +4,7 @@ import { DialogService } from "src/app/shared-components/utils/services/dialog.s
 import { DialogRef } from "src/app/shared-components/utils/interfaces/dialog-ref.interface";
 import { HeroesService } from "../services/heroes.service";
 import { FormService } from "src/app/shared-components/utils/services/form.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DialogRefEnum } from "../../shared/enums/dialog-ref.enum";
 import { ServerResponseEnum } from "../../shared/enums/server-response.enum";
 import { CCProcessDialogComponent } from "src/app/shared-components/cc-dialogs/cc-process-dialog/cc-process-dialog";
@@ -27,6 +27,7 @@ export class HeroFormComponent extends BaseFormComponent implements OnInit{
         private dialogService: DialogService,
         private formService: FormService,
         private activatedRoute: ActivatedRoute,
+        private router: Router
     ){
         super();
     }
@@ -66,6 +67,14 @@ export class HeroFormComponent extends BaseFormComponent implements OnInit{
     handleServerSuccessResponse(response: any): void{
         this.dialogService.close(DialogTypeEnum.PROCESSING);
         this.formService.openSuccessDialog(response[ServerResponseEnum.MESSAGE]);
+    }
+
+    deleteHero(): void{
+        this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
+        this.heroService.deleteHero(this.heroId).subscribe(response => {
+            this.handleServerSuccessResponse(response);
+            this.router.navigateByUrl('/heroes');
+        });
     }
 
     submit(): void {        

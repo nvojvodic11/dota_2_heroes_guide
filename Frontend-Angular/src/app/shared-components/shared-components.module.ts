@@ -15,8 +15,6 @@ import { CCProcessDialogModule } from "./cc-dialogs/cc-process-dialog/cc-process
 import { CCInfoDialogComponent } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.component";
 import { CCInfoDialogModule } from "./cc-dialogs/cc-info-dialog/cc-info-dialog.module";
 import { CommonModule } from '@angular/common';  
-import { CCSubmitButtonModule } from "./cc-submit-button/cc-submit-button.module";
-import { CCSubmitButtonComponent } from "./cc-submit-button/cc-submit-button";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from "./utils/base-component";
 import {MatIconModule} from '@angular/material/icon';
@@ -33,7 +31,6 @@ import { CCTextareaComponent } from "./cc-textarea/cc-textarea";
         CCInputComponent,
         CCProcessDialogComponent,
         CCInfoDialogComponent,
-        CCSubmitButtonComponent,
         BaseComponent,
         CCSelectComponent,
         CCTextareaComponent
@@ -51,7 +48,7 @@ import { CCTextareaComponent } from "./cc-textarea/cc-textarea";
         CommonModule,
         CCSelectModule,
         CCTextareaModule,
-        CCSubmitButtonModule, FormsModule, ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule,
         MatIconModule
     ],
     exports: [
@@ -61,7 +58,6 @@ import { CCTextareaComponent } from "./cc-textarea/cc-textarea";
         CCInputComponent,
         CCProcessDialogComponent,
         CCInfoDialogComponent,
-        CCSubmitButtonComponent,
         BaseComponent,
         CommonModule,
         MatIconModule,

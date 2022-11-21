@@ -7,7 +7,7 @@ export interface GuideForm {
     heroPosition: FormControl<string>;
     heroImage: FormControl<File | null | string>;
     goodWith: FormControl<any>;
-    counterHeros: FormControl<any>;
+    counterHeroes: FormControl<any>;
     counterItems: FormControl<any>;
     fullBuild: FormControl<any>;
 }

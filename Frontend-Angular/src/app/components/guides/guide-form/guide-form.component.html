@@ -33,17 +33,17 @@
         <cc-select
             id="good-with"
             label="Good With"
-            [data]="herosDropDown"
+            [data]="heroesDropDown"
             [multiple]="true"
             formControlName="goodWith"
             [formGroup]="formGroup">
         </cc-select>
         <cc-select
-            id="counter-heros"
-            label="Counter Heros"
-            [data]="herosDropDown"
+            id="counter-heroes"
+            label="Counter Heroes"
+            [data]="heroesDropDown"
             [multiple]="true"
-            formControlName="counterHeros"
+            formControlName="counterHeroes"
             [formGroup]="formGroup">
         </cc-select>
         <cc-select
@@ -63,11 +63,21 @@
             [formGroup]="formGroup">
         </cc-select>
     </form>
-    <cc-button
+    <div class="button-wrapper">
+        <cc-button
             title="Submit"
             [isRaised]="true"
             id="submit-form"
             [formGroup]="formGroup"
             (click)="submit()"
         ></cc-button>
+        <cc-button
+                *ngIf="guideId"
+                title="Delete"
+                color="warn"
+                [isRaised]="true"
+                id="delete-guide"
+                (click)="deleteGuide()"
+        ></cc-button>
+    </div>
 </div>

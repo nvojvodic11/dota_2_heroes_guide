@@ -5,7 +5,7 @@ export interface Guide{
     heroPosition: string;
     heroImage: string;
     goodWith: Array<string | number>;
-    counterHeros: Array<string | number>;
+    counterHeroes: Array<string | number>;
     counterItems: Array<string | number>;
     fullBuild: Array<string | number>;
 }

@@ -15,6 +15,7 @@ export class HeroesService{
     private readonly ADD_NEW_HERO_URL = `${environment.apiUrl}/addhero`;
     private readonly GET_HERO_URL = `${environment.apiUrl}/get-hero/{id}`
     private readonly UPDATE_HERO_URL = `${environment.apiUrl}/edithero/{id}`;
+    private readonly DELETE_HERO_URL = `${environment.apiUrl}/deletehero/{id}`;
 
     constructor(
         private http: HttpClient,
@@ -61,7 +62,17 @@ export class HeroesService{
 
     updateHero(hero: Hero){
         const url = this.UPDATE_HERO_URL.replace('{id}', hero.id.toString());
-        return this.http.post(url, hero)
+        return this.http.put(url, hero)
+    }
+
+    /**
+     * Delete selected hero
+     * @param heroId
+     * @returns 
+     */
+     deleteHero(heroId: string): Observable<any>{
+        const url = this.DELETE_HERO_URL.replace('{id}', heroId.toString());
+        return this.http.delete<any>(url);
     }
 
     /**

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CCInfoDialogComponent } from "src/app/shared-components/cc-dialogs/cc-info-dialog/cc-info-dialog.component";
 import { CCProcessDialogComponent } from "src/app/shared-components/cc-dialogs/cc-process-dialog/cc-process-dialog";
 import { DialogTypeEnum } from "src/app/shared-components/cc-dialogs/enums/dialog-type.enum";
@@ -26,7 +26,8 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit{
         private itemsService: ItemsService,
         private formService: FormService,
         private dialogService: DialogService,
-        private activatedRoute: ActivatedRoute){
+        private activatedRoute: ActivatedRoute,
+        private router: Router){
         super();
     }
 
@@ -67,6 +68,14 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit{
         this.dialogService.close(DialogTypeEnum.PROCESSING);
         this.formService.openSuccessDialog(response[ServerResponseEnum.MESSAGE])
     };
+
+    deleteItem(): void{
+        this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
+        this.itemsService.deleteItem(this.itemId).subscribe(response => {
+            this.handleServerSuccessResponse(response);
+            this.router.navigateByUrl('/items');
+        });
+    }
 
     submit(): void{
         if(this.formService.checkFormValidity(this.formGroup, this.dialogRefInvalidForm)){

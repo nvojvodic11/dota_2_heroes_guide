@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { CCProcessDialogComponent } from "src/app/shared-components/cc-dialogs/cc-process-dialog/cc-process-dialog";
 import { DialogTypeEnum } from "src/app/shared-components/cc-dialogs/enums/dialog-type.enum";
@@ -25,8 +25,8 @@ import { takeUntil } from "rxjs";
 export class GuideFormComponent extends BaseFormComponent implements OnInit{
     dialogRefInvalidForm: DialogRef;
     imageSrc: any;
-    heroId: string;
-    herosDropDown: SelectData[];
+    guideId: string;
+    heroesDropDown: SelectData[];
     itemsDropDown: SelectData[];
 
     constructor(
@@ -34,6 +34,7 @@ export class GuideFormComponent extends BaseFormComponent implements OnInit{
         private dialogService: DialogService,
         private formService: FormService,
         private activatedRoute: ActivatedRoute,
+        private router: Router,
         private store: Store
     ){
         super();
@@ -46,14 +47,14 @@ export class GuideFormComponent extends BaseFormComponent implements OnInit{
         this.store.dispatch(itemsPageAction.getAllItems());
         this.store.select(heroesSelect.getAllHeroes).pipe(
             takeUntil(this.destroy$)
-        ).subscribe(value => this.herosDropDown = this.guidesService.createSelectData(value, 'heroName', 'id'));
+        ).subscribe(value => this.heroesDropDown = this.guidesService.createSelectData(value, 'heroName', 'id'));
         this.store.select(itemSelect.getAllItems).pipe(
             takeUntil(this.destroy$)
         ).subscribe(value => this.itemsDropDown = this.guidesService.createSelectData(value, 'itemName', 'id'));
 
         this.activatedRoute.params.subscribe(value => {
             if(value[this.ID]){
-                this.heroId = value[this.ID];
+                this.guideId = value[this.ID];
                 this.guidesService.getGuide(value[this.ID]).subscribe(value => {
                         this.formGroup.patchValue(value);
                         this.imageSrc = value.heroImage;
@@ -71,7 +72,7 @@ export class GuideFormComponent extends BaseFormComponent implements OnInit{
     }
 
     checkIfHeroIsNew(): void{
-        if(!this.heroId){
+        if(!this.guideId){
             this.guidesService.addNewGuide(this.formGroup.getRawValue()).subscribe(
                 response => this.handleServerSuccessResponse(response));
         }else{
@@ -83,6 +84,14 @@ export class GuideFormComponent extends BaseFormComponent implements OnInit{
     handleServerSuccessResponse(response: any): void{
         this.dialogService.close(DialogTypeEnum.PROCESSING);
         this.formService.openSuccessDialog(response[ServerResponseEnum.MESSAGE]);
+    }
+
+    deleteGuide(): void{
+        this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
+        this.guidesService.deleteGuide(this.guideId).subscribe(response => {
+            this.handleServerSuccessResponse(response);
+            this.router.navigateByUrl('/guides');
+        });
     }
 
     submit(): void {        

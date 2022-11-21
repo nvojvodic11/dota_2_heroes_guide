@@ -56,7 +56,7 @@ const routes: Routes = [
   },
   { 
     path: '**',
-    component: HeroesComponent
+    component: HomeComponent
   }
 ];
 
