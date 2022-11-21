@@ -30,6 +30,34 @@
                 [formGroup]="formGroup">
             </cc-input>
         </div>
+        <cc-select
+            id="good-with"
+            label="Good With"
+            [data]="herosDropDown"
+            formControlName="goodWith"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="counter-heros"
+            label="Counter Heros"
+            [data]="herosDropDown"
+            formControlName="counterHeros"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="counter-items"
+            label="Counter Items"
+            [data]="itemsDropDown"
+            formControlName="counterItems"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="full-build"
+            label="Full Build"
+            [data]="itemsDropDown"
+            formControlName="fullBuild"
+            [formGroup]="formGroup">
+        </cc-select>
     </form>
     <cc-button
             title="Submit"

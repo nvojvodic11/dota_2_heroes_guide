@@ -11,6 +11,7 @@ export abstract class BaseFormComponent extends BaseComponent implements Control
     @Input() formControlName: string;
     @Input() appearance: 'legacy' | 'standard' | 'fill' | 'outline' = 'outline';
     @Input() isVisible = true;
+    @Input() required = false;
 
     @ViewChild(FormControlDirective, {static: true}) formControlDirective: FormControlDirective;
 
@@ -44,7 +45,7 @@ export abstract class BaseFormComponent extends BaseComponent implements Control
         const firstErrorKey = Object.keys(errors)[0];
 
         if(firstErrorKey){
-          return errors[firstErrorKey];
+          return errors;
         }
 
         if(this.formGroup.errors && this.formGroup.hasValidator?.length){

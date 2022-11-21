@@ -22,6 +22,5 @@ export class CCSelectComponent extends BaseFormComponent implements OnInit{
     toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
     ngOnInit(): void{
-        console.log(this.data)
     }
 }

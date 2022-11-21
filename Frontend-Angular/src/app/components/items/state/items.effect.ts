@@ -34,9 +34,6 @@ export class ItemsEffect {
         () => this.actions$.pipe(
             ofType(itemsPageAction.getAllItems),
             switchMap(() => {
-                
-                this.dialogService.open(CCProcessDialogComponent, this.dialogRef);
-
                 return this.itemsService.getAllItems()
                 .pipe(
                     map((result) => {

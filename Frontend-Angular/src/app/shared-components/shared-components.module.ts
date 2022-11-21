@@ -22,6 +22,8 @@ import { BaseComponent } from "./utils/base-component";
 import {MatIconModule} from '@angular/material/icon';
 import { CCSelectComponent } from "./cc-select/cc-select";
 import { CCSelectModule } from "./cc-select/cc-select.module";
+import { CCTextareaModule } from "./cc-textarea/cc-textarea.module";
+import { CCTextareaComponent } from "./cc-textarea/cc-textarea";
 
 @NgModule({
     declarations: [
@@ -33,7 +35,8 @@ import { CCSelectModule } from "./cc-select/cc-select.module";
         CCInfoDialogComponent,
         CCSubmitButtonComponent,
         BaseComponent,
-        CCSelectComponent
+        CCSelectComponent,
+        CCTextareaComponent
     ],
     imports: [
         CCToolbarModule,
@@ -47,6 +50,7 @@ import { CCSelectModule } from "./cc-select/cc-select.module";
         CCInfoDialogModule,
         CommonModule,
         CCSelectModule,
+        CCTextareaModule,
         CCSubmitButtonModule, FormsModule, ReactiveFormsModule,
         MatIconModule
     ],
@@ -62,6 +66,7 @@ import { CCSelectModule } from "./cc-select/cc-select.module";
         CommonModule,
         MatIconModule,
         CCSelectComponent,
+        CCTextareaComponent,
         BrowserModule, FormsModule, ReactiveFormsModule
     ],
     providers: [

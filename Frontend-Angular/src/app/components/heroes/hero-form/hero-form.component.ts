@@ -68,10 +68,9 @@ export class HeroFormComponent extends BaseFormComponent implements OnInit{
         this.formService.openSuccessDialog(response[ServerResponseEnum.MESSAGE]);
     }
 
-    submit(): void {
-        this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
-        
+    submit(): void {        
         if(this.formService.checkFormValidity(this.formGroup, this.dialogRefInvalidForm)){
+            this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
             this.checkIfHeroIsNew();
         }
     }

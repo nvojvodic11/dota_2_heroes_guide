@@ -69,9 +69,8 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit{
     };
 
     submit(): void{
-        this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
-
         if(this.formService.checkFormValidity(this.formGroup, this.dialogRefInvalidForm)){
+            this.dialogService.open(CCProcessDialogComponent, {id: DialogTypeEnum.PROCESSING});
             this.checkIfItemIsNew();
         }
     }
