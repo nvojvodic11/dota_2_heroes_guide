@@ -1,0 +1,51 @@
+<div class="main-wrapper">
+    <form [formGroup]="formGroup">
+        <div class="container">
+            <cc-input
+                id="hero-name"
+                label="Name"
+                formControlName="heroName"
+                [formGroup]="formGroup">
+            </cc-input>
+            <cc-input
+                id="hero-role"
+                label="Role"
+                formControlName="heroRole"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+        <div class="container">
+            <cc-input
+                id="hero-position"
+                label="Position"
+                formControlName="heroPosition"
+                [formGroup]="formGroup">
+            </cc-input>
+            <cc-input
+                id="hero-image"
+                label="Image"
+                type="file"
+                [imageSrc]="imageSrc"
+                formControlName="heroImage"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+    </form>
+    <div class="button-wrapper">
+        <cc-button
+            title="Submit"
+            [isRaised]="true"
+            id="submit-form"
+            [formGroup]="formGroup"
+            (click)="submit()"
+        ></cc-button>
+        <cc-button
+                *ngIf="heroId"
+                title="Delete"
+                [isRaised]="true"
+                id="delete-hero"
+                color="warn"
+                (click)="deleteHero()"
+        ></cc-button>
+    </div>
+</div>

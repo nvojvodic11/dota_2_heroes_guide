@@ -1,0 +1,46 @@
+<mat-form-field
+    *ngIf="isVisible && type === inputTypes.TEXT; else typeFile"
+    [formGroup]="formGroup" 
+    class="cc-input-wrapper"
+    [appearance]="appearance">
+    <mat-label>{{label}}</mat-label>
+    <input [id]="'cc-input-' + id"
+        [disabled]="isReadOnly"
+        matInput
+        type="text"
+        [formControlName]="formControlName" />
+    <mat-error *ngIf="isControlInvalid()">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
+<ng-template #typeFile>
+    <ng-container *ngIf="isVisible && type === inputTypes.FILE; else regularInput">
+        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <mat-icon>attach_file</mat-icon>
+        <input id="cc-file" class="hidden" (change)="onFileSelected($event)" #fileInput type="file">
+        <div class="cc-image-preview">
+            <img *ngIf="imageSrc" [src]="imageSrc" alt="" />
+        </div>
+        <mat-error *ngIf="isControlInvalid()">{{getErrorMessage()}}</mat-error>
+        <mat-form-field
+            [formGroup]="formGroup" 
+            class="cc-input-wrapper hidden"
+            [appearance]="appearance">
+            <input [id]="'cc-input-' + id"
+                [disabled]="isReadOnly"
+                matInput
+                type="text"
+                [formControlName]="formControlName" />
+            <mat-error *ngIf="isControlInvalid()">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </ng-container>
+</ng-template>
+
+<ng-template #regularInput>
+    <input 
+        [id]="'cc-input-' + id"
+        class="cc-input"
+        [disabled]="isReadOnly"
+        matInput
+        [placeholder]="label"
+        type="text" />
+</ng-template>

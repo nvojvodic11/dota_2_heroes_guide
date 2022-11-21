@@ -1,0 +1,5 @@
+<mat-form-field [formGroup]="formGroup" class="cc-textarea-form">
+    <mat-label>{{label}}</mat-label>
+    <textarea [id]="id" class="cc-textarea" matInput [formControlName]="formControlName"></textarea>
+    <mat-error *ngIf="isControlInvalid()">{{getErrorMessage()}}</mat-error>
+</mat-form-field>

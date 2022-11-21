@@ -1,0 +1,51 @@
+<div class="main-wrapper">
+    <form [formGroup]="formGroup">
+        <div class="container">
+            <cc-input
+                id="item-name"
+                label="Name"
+                formControlName="itemName"
+                [formGroup]="formGroup">
+            </cc-input>
+            <cc-input
+                id="item-price"
+                label="Price"
+                formControlName="itemPrice"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+        <div class="container">
+            <cc-textarea
+                id="item-description"
+                label="Description"
+                formControlName="itemDescription"
+                [formGroup]="formGroup">
+            </cc-textarea>
+            <cc-input
+                id="item-image"
+                label="Image"
+                type="file"
+                [imageSrc]="imageSrc"
+                formControlName="itemImage"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+    </form>
+    <div class="button-wrapper">
+        <cc-button
+            title="Submit"
+            [isRaised]="true"
+            id="submit-form"
+            [formGroup]="formGroup"
+            (click)="submit()"
+        ></cc-button>
+        <cc-button
+                *ngIf="itemId"
+                title="Delete"
+                color="warn"
+                [isRaised]="true"
+                id="delete-item"
+                (click)="deleteItem()"
+        ></cc-button>
+    </div>
+</div>

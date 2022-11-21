@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <div class="add-button-wrapper">
+        <cc-button
+            id="add-new-hero"
+            title="Add new hero"
+            [isRaised]="true"
+            (click)="navigate()">
+        </cc-button>
+    </div>
+    <div class="table-wrapper">
+        <cc-table
+            id="heroes-table"
+            [onRowClick]="getRowData"
+            [displayedColumns]="heroesTableColumns"
+            [filterValue]="filterValue"
+            [tableData]="data$">
+        </cc-table>
+    </div>
+</div>

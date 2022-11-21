@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+
+.search-wrapper{
+  width: 25%;
+  float: right;
+  border-radius: 10%;
+}
+
+.search-wrapper-column{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  margin-left: 15px !important;
+}

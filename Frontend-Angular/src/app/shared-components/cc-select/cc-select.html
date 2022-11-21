@@ -1,0 +1,7 @@
+<mat-form-field [formGroup]="formGroup" [appearance]="appearance">
+    <mat-label>{{label}}</mat-label>
+    <mat-select [id]="'cc-select-' + id" [formControlName]="formControlName" [multiple]="multiple">
+      <mat-option *ngFor="let object of data" [value]="object.value">{{object.text}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="isControlInvalid()">{{getErrorMessage()}}</mat-error>
+</mat-form-field>

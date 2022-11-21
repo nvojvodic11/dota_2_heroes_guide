@@ -1,0 +1,83 @@
+<div class="main-wrapper">
+    <form [formGroup]="formGroup">
+        <div class="container">
+            <cc-input
+                id="hero-name"
+                label="Name"
+                formControlName="heroName"
+                [formGroup]="formGroup">
+            </cc-input>
+            <cc-input
+                id="hero-role"
+                label="Role"
+                formControlName="heroRole"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+        <div class="container">
+            <cc-input
+                id="hero-position"
+                label="Position"
+                formControlName="heroPosition"
+                [formGroup]="formGroup">
+            </cc-input>
+            <cc-input
+                id="hero-image"
+                label="Image"
+                type="file"
+                [imageSrc]="imageSrc"
+                formControlName="heroImage"
+                [formGroup]="formGroup">
+            </cc-input>
+        </div>
+        <cc-select
+            id="good-with"
+            label="Good With"
+            [data]="heroesDropDown"
+            [multiple]="true"
+            formControlName="goodWith"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="counter-heroes"
+            label="Counter Heroes"
+            [data]="heroesDropDown"
+            [multiple]="true"
+            formControlName="counterHeroes"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="counter-items"
+            label="Counter Items"
+            [data]="itemsDropDown"
+            [multiple]="true"
+            formControlName="counterItems"
+            [formGroup]="formGroup">
+        </cc-select>
+        <cc-select
+            id="full-build"
+            label="Full Build"
+            [data]="itemsDropDown"
+            [multiple]="true"
+            formControlName="fullBuild"
+            [formGroup]="formGroup">
+        </cc-select>
+    </form>
+    <div class="button-wrapper">
+        <cc-button
+            title="Submit"
+            [isRaised]="true"
+            id="submit-form"
+            [formGroup]="formGroup"
+            (click)="submit()"
+        ></cc-button>
+        <cc-button
+                *ngIf="guideId"
+                title="Delete"
+                color="warn"
+                [isRaised]="true"
+                id="delete-guide"
+                (click)="deleteGuide()"
+        ></cc-button>
+    </div>
+</div>
