@@ -34,6 +34,7 @@
             id="good-with"
             label="Good With"
             [data]="herosDropDown"
+            [multiple]="true"
             formControlName="goodWith"
             [formGroup]="formGroup">
         </cc-select>
@@ -41,6 +42,7 @@
             id="counter-heros"
             label="Counter Heros"
             [data]="herosDropDown"
+            [multiple]="true"
             formControlName="counterHeros"
             [formGroup]="formGroup">
         </cc-select>
@@ -48,6 +50,7 @@
             id="counter-items"
             label="Counter Items"
             [data]="itemsDropDown"
+            [multiple]="true"
             formControlName="counterItems"
             [formGroup]="formGroup">
         </cc-select>
@@ -55,6 +58,7 @@
             id="full-build"
             label="Full Build"
             [data]="itemsDropDown"
+            [multiple]="true"
             formControlName="fullBuild"
             [formGroup]="formGroup">
         </cc-select>
